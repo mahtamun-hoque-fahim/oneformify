@@ -1,5 +1,5 @@
 'use client'
-import { GripVertical, Trash2 } from 'lucide-react'
+import { GripVertical, Trash2, Star, ChevronDown } from 'lucide-react'
 import type { FormField } from '@/lib/types/form'
 import { FIELD_LABELS } from '@/lib/types/form'
 import FieldIcon from './FieldIcon'
@@ -86,7 +86,7 @@ export default function FieldPreviewCard({
         {field.type === 'rating' && (
           <div className="flex gap-1">
             {Array.from({ length: field.maxRating ?? 5 }).map((_, i) => (
-              <span key={i} className="text-text-faint text-sm">☆</span>
+              <Star key={i} className="w-4 h-4 text-text-faint" />
             ))}
           </div>
         )}
@@ -99,7 +99,7 @@ export default function FieldPreviewCard({
         {field.type === 'dropdown' && (
           <div className="bg-bg border border-border rounded px-2 py-1.5 text-text-faint text-xs flex items-center justify-between w-40">
             <span>{field.placeholder || 'Select an option'}</span>
-            <span className="text-text-faint">▾</span>
+            <ChevronDown className="w-3 h-3 text-text-faint" />
           </div>
         )}
         {field.type === 'file_upload' && (

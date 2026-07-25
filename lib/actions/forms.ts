@@ -16,7 +16,7 @@ async function getSession() {
   return session
 }
 
-// ── Create form ──────────────────────────────────────────────────────────────
+// - Create form -
 export async function createForm(title: string) {
   const session = await getSession()
   const db = getDb()
@@ -55,7 +55,7 @@ export async function createForm(title: string) {
   redirect(`/dashboard/forms/${id}`)
 }
 
-// ── Update form fields ────────────────────────────────────────────────────────
+// - Update form fields -
 export async function updateFormFields(formId: string, fields: FormField[]) {
   const session = await getSession()
   const db = getDb()
@@ -72,7 +72,7 @@ export async function updateFormFields(formId: string, fields: FormField[]) {
   return { ok: true }
 }
 
-// ── Update form settings ──────────────────────────────────────────────────────
+// - Update form settings -
 export async function updateFormSettings(
   formId: string,
   data: Partial<{ title: string; slug: string; settings: FormSettings; isPublished: boolean }>
@@ -99,7 +99,7 @@ export async function updateFormSettings(
   return { ok: true }
 }
 
-// ── Soft-delete form ──────────────────────────────────────────────────────────
+// - Soft-delete form -
 export async function deleteForm(formId: string) {
   const session = await getSession()
   const db = getDb()
@@ -111,7 +111,7 @@ export async function deleteForm(formId: string) {
   redirect('/dashboard/forms')
 }
 
-// ── Get all user forms ────────────────────────────────────────────────────────
+// - Get all user forms -
 export async function getUserForms() {
   const session = await getSession()
   const db = getDb()
@@ -121,7 +121,7 @@ export async function getUserForms() {
     .orderBy(desc(forms.updatedAt))
 }
 
-// ── Get single form (owner only) ──────────────────────────────────────────────
+// - Get single form (owner only) -
 export async function getFormById(formId: string) {
   const session = await getSession()
   const db = getDb()

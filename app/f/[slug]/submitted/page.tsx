@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
+import { redirect } from 'next/navigation'
 import { getDb } from '@/lib/db'
 import { forms } from '@/lib/db/schema'
 import { eq, isNull, and } from 'drizzle-orm'
@@ -18,7 +19,13 @@ export default async function SubmittedPage({ params }: Props) {
     .from(forms)
     .where(and(eq(forms.slug, slug), isNull(forms.deletedAt)))
 
-  const settings = { ...DEFAULT_SETTINGS, ...(form?.settings as Partial<FormSettings> ?? {}) }
+  const settings: FormSettings = { ...DEFAULT_SETTINGS, ...(form?.settings as Partial<FormSettings> ?? {}) }
+
+  // Bug fix: honour redirect URL if set by form creator
+  if (settings.redirectUrl) {
+    redirect(settings.redirectUrl)
+  }
+
   const message = settings.thankYouMessage || 'Thank you for your response!'
 
   return (

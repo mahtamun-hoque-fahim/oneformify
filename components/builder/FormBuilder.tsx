@@ -1,5 +1,5 @@
 'use client'
-import { useState, useCallback, useTransition } from 'react'
+import { useState, useCallback, useTransition, useEffect } from 'react'
 import { Eye, EyeOff, Save, Share2, Settings } from 'lucide-react'
 import type { FormField, FormSettings, FieldType } from '@/lib/types/form'
 import { generateId } from '@/lib/utils'
@@ -26,6 +26,27 @@ export default function FormBuilder({ form }: Props) {
   const [copyMsg, setCopyMsg] = useState('')
 
   const selectedField = fields.find(f => f.id === selectedId) ?? null
+
+  // Bug fix 3: load template fields from sessionStorage if cloned from a template
+  useEffect(() => {
+    const raw = sessionStorage.getItem('template_fields')
+    if (!raw) return
+    try {
+      const templateFields: FormField[] = JSON.parse(raw)
+      if (templateFields.length > 0) {
+        setFields(templateFields)
+        setSaved(false)
+        // Fire-and-forget: persist to DB so the builder doesn't lose them on refresh
+        updateFormFields(form.id, templateFields).catch(() => null)
+      }
+    } catch {
+      // malformed storage — ignore
+    } finally {
+      sessionStorage.removeItem('template_fields')
+      sessionStorage.removeItem('template_title')
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   function addField(type: FieldType) {
     const newField: FormField = {

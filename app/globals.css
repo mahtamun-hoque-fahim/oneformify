@@ -54,7 +54,7 @@ body {
 }
 
 
-/* ─── Motion easing tokens ─────────────────────────────────────── */
+/* - Motion easing tokens - */
 :root {
   --ease-out:    cubic-bezier(0.23, 1, 0.32, 1);
   --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
@@ -62,7 +62,7 @@ body {
   --ease-subtle: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* ─── Keyframes ─────────────────────────────────────────────────── */
+/* - Keyframes - */
 @keyframes fade-up {
   from { opacity: 0; transform: translateY(10px); }
   to   { opacity: 1; transform: translateY(0); }
@@ -83,7 +83,7 @@ body {
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* ─── Utility animation classes ─────────────────────────────────── */
+/* - Utility animation classes - */
 .animate-fade-up {
   animation: fade-up 0.25s var(--ease-out) both;
 }
@@ -108,7 +108,7 @@ body {
 .stagger-4 { animation-delay: 0.16s; }
 .stagger-5 { animation-delay: 0.20s; }
 
-/* ─── Input focus glow ──────────────────────────────────────────── */
+/* - Input focus glow - */
 .input-glow:focus {
   box-shadow: 0 0 0 3px rgb(109 40 217 / 0.15);
   border-color: var(--color-accent);

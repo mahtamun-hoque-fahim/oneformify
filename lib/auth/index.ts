@@ -1,6 +1,8 @@
 import { betterAuth } from 'better-auth'
 import { drizzleAdapter } from 'better-auth/adapters/drizzle'
 import { getDb } from '@/lib/db'
+import { eq } from 'drizzle-orm'
+import { users } from '@/lib/db/schema'
 
 function createAuth() {
   return betterAuth({
@@ -23,12 +25,32 @@ function createAuth() {
     },
     session: {
       expiresIn: 60 * 60 * 24 * 7,
-      updateAge: 60 * 60 * 24,
+      updateAge:  60 * 60 * 24,
     },
     user: {
       additionalFields: {
         role: { type: 'string', defaultValue: 'user', input: false },
         plan: { type: 'string', defaultValue: 'free', input: false },
+      },
+    },
+    // Bug fix B5: seed admin role from ADMIN_EMAILS env var on user creation
+    databaseHooks: {
+      user: {
+        create: {
+          async after(user) {
+            const adminEmails = (process.env.ADMIN_EMAILS ?? '')
+              .split(',')
+              .map(e => e.trim().toLowerCase())
+              .filter(Boolean)
+
+            if (adminEmails.includes(user.email.toLowerCase())) {
+              await getDb()
+                .update(users)
+                .set({ role: 'admin' })
+                .where(eq(users.id, user.id))
+            }
+          },
+        },
       },
     },
   })
