@@ -1,5 +1,6 @@
 'use client'
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname, useRouter } from 'next/navigation'
 import { signOut } from '@/lib/auth/client'
 
@@ -28,8 +29,8 @@ export default function DashboardSidebar({ user }: Props) {
     <aside className="w-60 bg-surface border-r border-border flex flex-col shrink-0 min-h-screen">
       {/* Brand */}
       <div className="p-6 border-b border-border">
-        <Link href="/dashboard" className="font-syne text-xl font-bold text-text">
-          Formify
+        <Link href="/dashboard">
+          <Image src="/logo.svg" alt="Formify" width={90} height={19} />
         </Link>
         {user.role === 'admin' && (
           <span className="ml-2 text-xs font-mono text-danger">ADMIN</span>

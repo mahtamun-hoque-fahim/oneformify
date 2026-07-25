@@ -1,4 +1,5 @@
 'use client'
+import { Star } from 'lucide-react'
 import type { FormField as FormFieldType } from '@/lib/types/form'
 
 interface Props {
@@ -30,29 +31,17 @@ export default function FormFieldRenderer({ field, value, onChange, error }: Pro
           {field.label || 'Untitled field'}
           {field.required && <span className="text-danger ml-1">*</span>}
         </label>
-        {field.description && (
-          <p className="text-text-muted text-xs mt-0.5">{field.description}</p>
-        )}
+        {field.description && <p className="text-text-muted text-xs mt-0.5">{field.description}</p>}
       </div>
 
       {field.type === 'short_text' && (
-        <input
-          type="text"
-          value={value as string}
-          onChange={e => onChange(e.target.value)}
-          placeholder={field.placeholder}
-          className={inputClass}
-        />
+        <input type="text" value={value as string} onChange={e => onChange(e.target.value)}
+          placeholder={field.placeholder} className={inputClass} />
       )}
 
       {field.type === 'long_text' && (
-        <textarea
-          value={value as string}
-          onChange={e => onChange(e.target.value)}
-          placeholder={field.placeholder}
-          rows={4}
-          className={`${inputClass} resize-none`}
-        />
+        <textarea value={value as string} onChange={e => onChange(e.target.value)}
+          placeholder={field.placeholder} rows={4} className={`${inputClass} resize-none`} />
       )}
 
       {field.type === 'multiple_choice' && (
@@ -64,14 +53,8 @@ export default function FormFieldRenderer({ field, value, onChange, error }: Pro
               }`}>
                 {value === opt && <div className="w-1.5 h-1.5 rounded-full bg-white" />}
               </div>
-              <input
-                type="radio"
-                name={field.id}
-                value={opt}
-                checked={value === opt}
-                onChange={() => onChange(opt)}
-                className="sr-only"
-              />
+              <input type="radio" name={field.id} value={opt} checked={value === opt}
+                onChange={() => onChange(opt)} className="sr-only" />
               <span className="text-sm text-text">{opt}</span>
             </label>
           ))}
@@ -93,15 +76,10 @@ export default function FormFieldRenderer({ field, value, onChange, error }: Pro
                     </svg>
                   )}
                 </div>
-                <input
-                  type="checkbox"
-                  checked={checked}
-                  onChange={() => {
-                    const arr = Array.isArray(value) ? [...value] : []
-                    onChange(checked ? arr.filter(v => v !== opt) : [...arr, opt])
-                  }}
-                  className="sr-only"
-                />
+                <input type="checkbox" checked={checked} onChange={() => {
+                  const arr = Array.isArray(value) ? [...value] : []
+                  onChange(checked ? arr.filter(v => v !== opt) : [...arr, opt])
+                }} className="sr-only" />
                 <span className="text-sm text-text">{opt}</span>
               </label>
             )
@@ -110,25 +88,14 @@ export default function FormFieldRenderer({ field, value, onChange, error }: Pro
       )}
 
       {field.type === 'dropdown' && (
-        <select
-          value={value as string}
-          onChange={e => onChange(e.target.value)}
-          className={inputClass}
-        >
+        <select value={value as string} onChange={e => onChange(e.target.value)} className={inputClass}>
           <option value="">{field.placeholder || 'Select an option'}</option>
-          {(field.options ?? []).map((opt, i) => (
-            <option key={i} value={opt}>{opt}</option>
-          ))}
+          {(field.options ?? []).map((opt, i) => <option key={i} value={opt}>{opt}</option>)}
         </select>
       )}
 
       {field.type === 'date' && (
-        <input
-          type="date"
-          value={value as string}
-          onChange={e => onChange(e.target.value)}
-          className={inputClass}
-        />
+        <input type="date" value={value as string} onChange={e => onChange(e.target.value)} className={inputClass} />
       )}
 
       {field.type === 'rating' && (
@@ -137,15 +104,11 @@ export default function FormFieldRenderer({ field, value, onChange, error }: Pro
             const rating = i + 1
             const filled = Number(value) >= rating
             return (
-              <button
-                key={i}
-                type="button"
-                onClick={() => onChange(String(rating))}
-                className={`text-2xl transition-colors duration-100 ${
-                  filled ? 'text-warning' : 'text-border hover:text-warning/60'
-                }`}
-              >
-                ★
+              <button key={i} type="button" onClick={() => onChange(String(rating))}
+                className="transition-colors duration-100">
+                <Star className={`w-7 h-7 transition-colors duration-100 ${
+                  filled ? 'fill-warning text-warning' : 'text-border hover:text-warning/60'
+                }`} />
               </button>
             )
           })}
@@ -156,16 +119,9 @@ export default function FormFieldRenderer({ field, value, onChange, error }: Pro
         <div className={`border-2 border-dashed rounded-md p-6 text-center transition-colors duration-150 ${
           error ? 'border-danger' : 'border-border hover:border-accent/60'
         }`}>
-          <input
-            type="file"
-            accept={field.acceptedFileTypes}
-            onChange={e => {
-              const file = e.target.files?.[0]
-              if (file) onChange(file.name)
-            }}
-            className="hidden"
-            id={`file-${field.id}`}
-          />
+          <input type="file" accept={field.acceptedFileTypes}
+            onChange={e => { const f = e.target.files?.[0]; if (f) onChange(f.name) }}
+            className="hidden" id={`file-${field.id}`} />
           <label htmlFor={`file-${field.id}`} className="cursor-pointer">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-text-muted mx-auto mb-2">
               <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" strokeLinecap="round" strokeLinejoin="round"/>

@@ -150,7 +150,13 @@ export default function FormBuilder({ form }: Props) {
         <FieldPalette onAdd={addField} />
 
         {/* Center: canvas */}
-        <div className="flex-1 overflow-y-auto p-6">
+        <div
+          className="flex-1 overflow-y-auto p-6"
+          style={{
+            backgroundImage: 'radial-gradient(circle, #1e1a30 1px, transparent 1px)',
+            backgroundSize: '24px 24px',
+          }}
+        >
           <div className="max-w-2xl mx-auto">
             {/* Form header preview */}
             <div className="bg-surface border border-border rounded-xl p-6 mb-4">

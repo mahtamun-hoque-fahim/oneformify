@@ -3,6 +3,7 @@ import { useState, useCallback, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import type { FormField, FormSettings, ConditionalRule } from '@/lib/types/form'
 import FocusMonitor, { type Violation } from './FocusMonitor'
+import Image from 'next/image'
 import ProgressBar from './ProgressBar'
 import FormFieldRenderer from './FormField'
 
@@ -109,7 +110,11 @@ export default function FormFillClient({ formId, slug, title, description, field
   }, [answers, slug])
 
   return (
-    <main className="min-h-screen bg-bg py-12 px-4">
+    <>
+      <header className="border-b border-border bg-surface px-6 h-12 flex items-center">
+        <Image src="/logo.svg" alt="Formify" width={80} height={17} />
+      </header>
+      <main className="min-h-screen bg-bg py-12 px-4">
       {/* Quiz mode focus monitor */}
       <FocusMonitor
         enabled={settings.focusMonitoringEnabled}
@@ -187,5 +192,6 @@ export default function FormFillClient({ formId, slug, title, description, field
         )}
       </div>
     </main>
+    </>
   )
 }
