@@ -140,10 +140,13 @@ export default function LandingPage() {
           </div>
 
           {/* Hero visual — form preview mock */}
-          {/* IMAGE-BRIEF: hero-01 | 16:9 | product screenshot or 3D render — dark bg-surface panel, a filled Formify form at 3/4 angle, violet accent field highlights, progress bar visible, soft top-left light, no baked-in text */}
-          <div
-            data-image-slot="hero-01"
-            className="aspect-video w-full rounded-2xl border border-dashed border-white/10 bg-surface/40"
+          <Image
+            src="/images/hero-01.png"
+            alt="Formify form builder in action — a quiz form at 3D angle showing progress bar and multiple choice fields"
+            width={1366}
+            height={768}
+            className="w-full rounded-2xl shadow-lg"
+            priority
           />
           <div className="mt-16 relative">
             {/* Mock form preview */}
@@ -215,10 +218,12 @@ export default function LandingPage() {
               Everything Google Forms should have built in.
             </h2>
           </div>
-          {/* IMAGE-BRIEF: feat-02 | 3:1 | single wide illustration strip — 3 side-by-side scenes in bg-surface-elevated panels: (1) drag-drop builder canvas with dot grid, (2) form fill page with progress bar, (3) response chart with violet bars. Flat vector style, accent color only, no gradients */}
-          <div
-            data-image-slot="feat-02"
-            className="w-full h-48 rounded-xl border border-dashed border-white/10 bg-surface/40 mb-10"
+          <Image
+            src="/images/feat-02.png"
+            alt="Three Formify product screens side by side: the form builder canvas, a live form fill page with quiz mode, and the response analytics dashboard"
+            width={1500}
+            height={500}
+            className="w-full rounded-xl mb-10 shadow-md"
           />
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
             {FEATURES.map(({ icon, title, desc }) => (
@@ -260,10 +265,11 @@ export default function LandingPage() {
       {/* Bottom CTA */}
       <section className="py-24 px-6 border-t border-border">
         <div className="max-w-2xl mx-auto text-center relative">
-          {/* IMAGE-BRIEF: cta-03 | 16:9 | full-bleed background texture for CTA section — dark bg canvas with subtle dot-grid or crosshatch pattern, single radial violet accent/20 glow centered, no figures or UI elements, purely atmospheric */}
-          <div
-            data-image-slot="cta-03"
-            className="absolute inset-0 rounded-xl border border-dashed border-white/10 bg-surface/20 -z-10"
+          <Image
+            src="/images/cta-03.png"
+            alt=""
+            fill
+            className="object-cover rounded-xl opacity-60 -z-10"
           />
           <Image src="/icon.svg" alt="" width={48} height={48} className="mx-auto mb-6 opacity-80" />
           <h2 className="font-syne text-4xl font-bold text-text mb-4">
