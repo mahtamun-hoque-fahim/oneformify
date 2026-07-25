@@ -45,7 +45,7 @@ export default async function FormsPage() {
       ) : (
         <div className="grid gap-3">
           {activeForms.map(form => (
-            <div key={form.id} className="bg-surface border border-border rounded-lg px-5 py-4 flex items-center justify-between hover:border-accent/30 transition-colors duration-150 group">
+            <div key={form.id} className="bg-surface border border-border rounded-lg px-5 py-4 flex items-center justify-between hover:border-accent/30 hover:-translate-y-px hover:shadow-md transition-[transform,border-color,box-shadow] duration-150 ease-out group">
               <div className="min-w-0 flex-1">
                 <div className="flex items-center gap-3 mb-1">
                   <Link href={`/dashboard/forms/${form.id}`} className="text-text text-sm font-medium hover:text-accent transition-colors truncate">

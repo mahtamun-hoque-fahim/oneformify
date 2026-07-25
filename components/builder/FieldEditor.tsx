@@ -64,7 +64,7 @@ export default function FieldEditor({ field, allFields, onChange, onDelete }: Pr
             value={field.label}
             onChange={e => update({ label: e.target.value })}
             placeholder="Question or field label"
-            className="bg-bg border border-border rounded-md px-3 py-2 text-text text-sm placeholder:text-text-faint focus:border-accent focus:outline-none transition-colors duration-150"
+            className="bg-bg border border-border rounded-md px-3 py-2 text-text text-sm placeholder:text-text-faint focus:border-accent focus:outline-none focus:shadow-[0_0_0_3px_rgb(109_40_217_/_0.15)] transition-[border-color,box-shadow] duration-150"
           />
         </div>
       )}
@@ -77,7 +77,7 @@ export default function FieldEditor({ field, allFields, onChange, onDelete }: Pr
             value={field.label}
             onChange={e => update({ label: e.target.value })}
             placeholder="Section title (optional)"
-            className="bg-bg border border-border rounded-md px-3 py-2 text-text text-sm placeholder:text-text-faint focus:border-accent focus:outline-none transition-colors duration-150"
+            className="bg-bg border border-border rounded-md px-3 py-2 text-text text-sm placeholder:text-text-faint focus:border-accent focus:outline-none focus:shadow-[0_0_0_3px_rgb(109_40_217_/_0.15)] transition-[border-color,box-shadow] duration-150"
           />
         </div>
       )}
@@ -90,7 +90,7 @@ export default function FieldEditor({ field, allFields, onChange, onDelete }: Pr
             value={field.description ?? ''}
             onChange={e => update({ description: e.target.value })}
             placeholder="Helper text shown below the label"
-            className="bg-bg border border-border rounded-md px-3 py-2 text-text text-sm placeholder:text-text-faint focus:border-accent focus:outline-none transition-colors duration-150"
+            className="bg-bg border border-border rounded-md px-3 py-2 text-text text-sm placeholder:text-text-faint focus:border-accent focus:outline-none focus:shadow-[0_0_0_3px_rgb(109_40_217_/_0.15)] transition-[border-color,box-shadow] duration-150"
           />
         </div>
       )}
@@ -103,7 +103,7 @@ export default function FieldEditor({ field, allFields, onChange, onDelete }: Pr
             value={field.placeholder ?? ''}
             onChange={e => update({ placeholder: e.target.value })}
             placeholder="Placeholder text"
-            className="bg-bg border border-border rounded-md px-3 py-2 text-text text-sm placeholder:text-text-faint focus:border-accent focus:outline-none transition-colors duration-150"
+            className="bg-bg border border-border rounded-md px-3 py-2 text-text text-sm placeholder:text-text-faint focus:border-accent focus:outline-none focus:shadow-[0_0_0_3px_rgb(109_40_217_/_0.15)] transition-[border-color,box-shadow] duration-150"
           />
         </div>
       )}
@@ -117,7 +117,7 @@ export default function FieldEditor({ field, allFields, onChange, onDelete }: Pr
               <input
                 value={opt}
                 onChange={e => updateOption(i, e.target.value)}
-                className="flex-1 bg-bg border border-border rounded-md px-3 py-1.5 text-text text-sm focus:border-accent focus:outline-none transition-colors duration-150"
+                className="flex-1 bg-bg border border-border rounded-md px-3 py-1.5 text-text text-sm focus:border-accent focus:outline-none focus:shadow-[0_0_0_3px_rgb(109_40_217_/_0.15)] transition-[border-color,box-shadow] duration-150"
               />
               <button onClick={() => removeOption(i)} className="text-text-faint hover:text-danger transition-colors duration-150">
                 <X className="w-4 h-4" />
@@ -146,7 +146,7 @@ export default function FieldEditor({ field, allFields, onChange, onDelete }: Pr
           <select
             value={field.maxRating ?? 5}
             onChange={e => update({ maxRating: Number(e.target.value) })}
-            className="bg-bg border border-border rounded-md px-3 py-2 text-text text-sm focus:border-accent focus:outline-none transition-colors duration-150"
+            className="bg-bg border border-border rounded-md px-3 py-2 text-text text-sm focus:border-accent focus:outline-none focus:shadow-[0_0_0_3px_rgb(109_40_217_/_0.15)] transition-[border-color,box-shadow] duration-150"
           >
             {[3,4,5,7,10].map(n => <option key={n} value={n}>{n} stars</option>)}
           </select>
@@ -161,7 +161,7 @@ export default function FieldEditor({ field, allFields, onChange, onDelete }: Pr
             value={field.acceptedFileTypes ?? ''}
             onChange={e => update({ acceptedFileTypes: e.target.value })}
             placeholder="image/*,application/pdf"
-            className="bg-bg border border-border rounded-md px-3 py-2 text-text text-sm placeholder:text-text-faint focus:border-accent focus:outline-none transition-colors duration-150"
+            className="bg-bg border border-border rounded-md px-3 py-2 text-text text-sm placeholder:text-text-faint focus:border-accent focus:outline-none focus:shadow-[0_0_0_3px_rgb(109_40_217_/_0.15)] transition-[border-color,box-shadow] duration-150"
           />
           <p className="text-text-faint text-xs">Comma-separated MIME types</p>
         </div>

@@ -22,7 +22,7 @@ export default function FieldPreviewCard({
     return (
       <div
         onClick={onSelect}
-        className={`group relative flex items-center gap-3 rounded-lg border px-4 py-3 cursor-pointer transition-all duration-150 ${
+        className={`group relative flex items-center gap-3 rounded-lg border px-4 py-3 cursor-pointer animate-fade-up transition-[border-color,background-color,box-shadow] duration-150 ${
           isSelected ? 'border-accent bg-accent-faint' : 'border-border bg-surface hover:border-accent/40'
         }`}
       >
@@ -40,7 +40,7 @@ export default function FieldPreviewCard({
   return (
     <div
       onClick={onSelect}
-      className={`group relative rounded-lg border px-4 py-3 cursor-pointer transition-all duration-150 ${
+      className={`group relative rounded-lg border px-4 py-3 cursor-pointer animate-fade-up transition-[border-color,background-color,box-shadow] duration-150 ${
         isSelected ? 'border-accent bg-accent-faint shadow-glow' : 'border-border bg-surface hover:border-accent/40'
       }`}
     >

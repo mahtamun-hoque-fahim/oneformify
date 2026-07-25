@@ -10,7 +10,7 @@ interface Props {
 }
 
 export default function FormFieldRenderer({ field, value, onChange, error }: Props) {
-  const inputClass = `w-full bg-bg border rounded-md px-3 py-2.5 text-text text-sm placeholder:text-text-faint focus:border-accent focus:outline-none transition-colors duration-150 ${
+  const inputClass = `w-full bg-bg border rounded-md px-3 py-2.5 text-text text-sm placeholder:text-text-faint focus:border-accent focus:outline-none focus:shadow-[0_0_0_3px_rgb(109_40_217_/_0.15)] transition-[border-color,box-shadow] duration-150 ${
     error ? 'border-danger' : 'border-border'
   }`
 

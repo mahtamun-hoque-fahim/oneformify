@@ -58,8 +58,8 @@ export default function FocusMonitor({ enabled, threshold, onAutoSubmit, onViola
   if (!showWarning || !enabled) return null
 
   return (
-    <div className="fixed inset-0 bg-bg/90 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-      <div className="bg-surface-elevated border border-danger/30 rounded-xl p-8 max-w-sm w-full text-center shadow-lg">
+    <div className="fixed inset-0 bg-bg/90 backdrop-blur-sm flex items-center justify-center z-50 p-4 animate-backdrop-in">
+      <div className="bg-surface-elevated border border-danger/30 rounded-xl p-8 max-w-sm w-full text-center shadow-lg animate-scale-in">
         <div className="w-12 h-12 rounded-full bg-danger/10 border border-danger/20 flex items-center justify-center mx-auto mb-4">
           <AlertTriangle className="w-6 h-6 text-danger" />
         </div>
@@ -72,7 +72,7 @@ export default function FocusMonitor({ enabled, threshold, onAutoSubmit, onViola
         </p>
         <button
           onClick={() => setShowWarning(false)}
-          className="bg-accent text-white px-6 py-2.5 rounded-md text-sm font-semibold w-full hover:bg-accent-hover transition-colors duration-150"
+          className="bg-accent text-white px-6 py-2.5 rounded-md text-sm font-semibold w-full hover:bg-accent-hover transition-colors duration-150 active:scale-[0.97] active:scale-[0.97] active:opacity-90"
         >
           Resume quiz
         </button>

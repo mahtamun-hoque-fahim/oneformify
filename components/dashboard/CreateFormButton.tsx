@@ -24,7 +24,7 @@ export default function CreateFormButton() {
     return (
       <button
         onClick={() => setOpen(true)}
-        className="bg-accent text-white px-4 py-2 rounded-md text-sm font-semibold hover:bg-accent-hover transition-colors duration-150"
+        className="bg-accent text-white px-4 py-2 rounded-md text-sm font-semibold hover:bg-accent-hover transition-colors duration-150 active:scale-[0.97] active:scale-[0.97] active:opacity-90"
       >
         New form
       </button>
@@ -32,8 +32,8 @@ export default function CreateFormButton() {
   }
 
   return (
-    <div className="fixed inset-0 bg-bg/80 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-      <div className="bg-surface-elevated border border-border rounded-xl p-6 w-full max-w-sm shadow-lg">
+    <div className="fixed inset-0 bg-bg/80 backdrop-blur-sm flex items-center justify-center z-50 p-4 animate-backdrop-in">
+      <div className="bg-surface-elevated border border-border rounded-xl p-6 w-full max-w-sm shadow-lg animate-scale-in">
         <h2 className="font-syne text-lg font-semibold text-text mb-4">Name your form</h2>
         <input
           type="text"
@@ -51,7 +51,7 @@ export default function CreateFormButton() {
           <button
             onClick={handleCreate}
             disabled={loading || !title.trim()}
-            className="flex-1 bg-accent text-white rounded-md py-2 text-sm font-semibold hover:bg-accent-hover transition-colors duration-150 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="flex-1 bg-accent text-white rounded-md py-2 text-sm font-semibold hover:bg-accent-hover transition-colors duration-150 active:scale-[0.97] active:scale-[0.97] active:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {loading ? 'Creating...' : 'Create form'}
           </button>

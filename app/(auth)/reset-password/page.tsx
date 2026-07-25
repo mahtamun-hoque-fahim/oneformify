@@ -48,17 +48,17 @@ function ResetPasswordForm() {
           <label className="text-sm font-medium text-text-muted">New password</label>
           <input type="password" value={password} onChange={e => setPassword(e.target.value)}
             placeholder="Min 8 characters" required minLength={8} autoComplete="new-password"
-            className="bg-bg border border-border rounded-md px-3 py-2.5 text-text text-sm placeholder:text-text-faint focus:border-accent focus:outline-none transition-colors duration-150" />
+            className="bg-bg border border-border rounded-md px-3 py-2.5 text-text text-sm placeholder:text-text-faint focus:border-accent focus:outline-none focus:shadow-[0_0_0_3px_rgb(109_40_217_/_0.15)] transition-[border-color,box-shadow] duration-150" />
         </div>
         <div className="flex flex-col gap-1.5">
           <label className="text-sm font-medium text-text-muted">Confirm password</label>
           <input type="password" value={confirm} onChange={e => setConfirm(e.target.value)}
             placeholder="Repeat your password" required minLength={8} autoComplete="new-password"
-            className="bg-bg border border-border rounded-md px-3 py-2.5 text-text text-sm placeholder:text-text-faint focus:border-accent focus:outline-none transition-colors duration-150" />
+            className="bg-bg border border-border rounded-md px-3 py-2.5 text-text text-sm placeholder:text-text-faint focus:border-accent focus:outline-none focus:shadow-[0_0_0_3px_rgb(109_40_217_/_0.15)] transition-[border-color,box-shadow] duration-150" />
         </div>
         {error && <p className="text-danger text-sm bg-danger/10 border border-danger/20 rounded-md px-3 py-2">{error}</p>}
         <button type="submit" disabled={loading}
-          className="bg-accent text-white rounded-md py-2.5 text-sm font-semibold hover:bg-accent-hover transition-colors duration-150 disabled:opacity-50 disabled:cursor-not-allowed">
+          className="bg-accent text-white rounded-md py-2.5 text-sm font-semibold hover:bg-accent-hover transition-colors duration-150 active:scale-[0.97] active:scale-[0.97] active:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed">
           {loading ? 'Updating...' : 'Update password'}
         </button>
       </form>

@@ -36,7 +36,7 @@ export default function AccountSettingsClient({ name, email, plan, role }: Props
     setPwLoading(false)
   }
 
-  const inputClass = "bg-bg border border-border rounded-md px-3 py-2.5 text-text text-sm placeholder:text-text-faint focus:border-accent focus:outline-none transition-colors duration-150 w-full"
+  const inputClass = "bg-bg border border-border rounded-md px-3 py-2.5 text-text text-sm placeholder:text-text-faint focus:border-accent focus:outline-none focus:shadow-[0_0_0_3px_rgb(109_40_217_/_0.15)] transition-[border-color,box-shadow] duration-150 w-full"
 
   return (
     <div className="max-w-2xl flex flex-col gap-4">
@@ -105,7 +105,7 @@ export default function AccountSettingsClient({ name, email, plan, role }: Props
           <button
             type="submit"
             disabled={pwLoading || !newPassword || !confirmPassword}
-            className="bg-accent text-white px-5 py-2.5 rounded-md text-sm font-semibold hover:bg-accent-hover transition-colors duration-150 disabled:opacity-50 self-start"
+            className="bg-accent text-white px-5 py-2.5 rounded-md text-sm font-semibold hover:bg-accent-hover transition-colors duration-150 active:scale-[0.97] active:scale-[0.97] active:opacity-90 disabled:opacity-50 self-start"
           >
             {pwLoading ? 'Updating...' : 'Update password'}
           </button>

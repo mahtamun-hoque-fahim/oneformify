@@ -76,7 +76,7 @@ export default async function TemplatesPage() {
           <h2 className="text-xs font-medium text-text-muted uppercase tracking-wide mb-3">{cat}</h2>
           <div className="grid grid-cols-2 gap-3">
             {STARTER_TEMPLATES.filter(t => t.category === cat).map(tmpl => (
-              <div key={tmpl.id} className="bg-surface border border-border rounded-xl p-5 hover:border-accent/30 transition-colors duration-150 group">
+              <div key={tmpl.id} className="bg-surface border border-border rounded-xl p-5 hover:border-accent/30 hover:-translate-y-0.5 hover:shadow-md transition-[transform,border-color,box-shadow] duration-200 ease-out group">
                 <h3 className="font-syne text-base font-semibold text-text mb-1 group-hover:text-accent transition-colors duration-150">{tmpl.title}</h3>
                 <p className="text-text-muted text-sm mb-4">{tmpl.description}</p>
                 <div className="flex items-center justify-between">

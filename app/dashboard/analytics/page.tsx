@@ -88,7 +88,7 @@ export default async function AnalyticsPage() {
                     </div>
                     <div className="w-full bg-surface-elevated rounded-full h-1">
                       <div
-                        className="bg-accent h-1 rounded-full transition-all duration-300"
+                        className="bg-accent h-1 rounded-full transition-[width] duration-300 ease-out"
                         style={{ width: `${pct}%` }}
                       />
                     </div>

@@ -22,7 +22,7 @@ export default function FieldPalette({ onAdd }: Props) {
           <button
             key={type}
             onClick={() => onAdd(type)}
-            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-md text-left text-sm text-text-muted hover:text-text hover:bg-surface-elevated transition-colors duration-150 group"
+            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-md text-left text-sm text-text-muted hover:text-text hover:bg-surface-elevated active:scale-[0.98] active:bg-accent-faint active:text-accent transition-[background-color,color,transform] duration-100 ease-out group"
           >
             <span className="text-text-faint group-hover:text-accent transition-colors duration-150">
               <FieldIcon type={type} className="w-4 h-4" />

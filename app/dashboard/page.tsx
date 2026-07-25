@@ -36,7 +36,7 @@ export default async function DashboardPage() {
     : [{ value: 0 }]
 
   return (
-    <div>
+    <div className="animate-fade-up">
       <div className="flex items-center justify-between mb-8">
         <div>
           <h1 className="font-syne text-3xl font-bold text-text mb-1">
@@ -89,7 +89,7 @@ export default async function DashboardPage() {
               <Link
                 key={form.id}
                 href={`/dashboard/forms/${form.id}`}
-                className="bg-surface border border-border rounded-lg px-5 py-4 flex items-center justify-between hover:border-accent/40 transition-colors duration-150 group"
+                className="bg-surface border border-border rounded-lg px-5 py-4 flex items-center justify-between hover:border-accent/40 hover:-translate-y-px hover:shadow-md transition-[transform,border-color,box-shadow] duration-150 ease-out group"
               >
                 <div>
                   <p className="text-text text-sm font-medium group-hover:text-accent transition-colors">{form.title}</p>

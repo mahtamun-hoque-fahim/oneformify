@@ -82,7 +82,7 @@ export default function FormSettingsClient({
     })
   }
 
-  const inputClass = "bg-bg border border-border rounded-md px-3 py-2.5 text-text text-sm placeholder:text-text-faint focus:border-accent focus:outline-none transition-colors duration-150 w-full"
+  const inputClass = "bg-bg border border-border rounded-md px-3 py-2.5 text-text text-sm placeholder:text-text-faint focus:border-accent focus:outline-none focus:shadow-[0_0_0_3px_rgb(109_40_217_/_0.15)] transition-[border-color,box-shadow] duration-150 w-full"
   const sectionClass = "bg-surface border border-border rounded-xl p-6 flex flex-col gap-5"
 
   return (
@@ -205,7 +205,7 @@ export default function FormSettingsClient({
         <button
           onClick={handleSave}
           disabled={saving}
-          className="bg-accent text-white px-5 py-2.5 rounded-md text-sm font-semibold hover:bg-accent-hover transition-colors duration-150 disabled:opacity-50"
+          className="bg-accent text-white px-5 py-2.5 rounded-md text-sm font-semibold hover:bg-accent-hover transition-colors duration-150 active:scale-[0.97] active:scale-[0.97] active:opacity-90 disabled:opacity-50"
         >
           {saving ? 'Saving...' : 'Save settings'}
         </button>

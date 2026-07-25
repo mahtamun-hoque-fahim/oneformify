@@ -74,7 +74,7 @@ export default function LandingPage() {
       <nav className="fixed top-0 inset-x-0 z-40 border-b border-border bg-bg/80 backdrop-blur-md">
         <div className="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
           <Image src="/logo.svg" alt="Formify" width={100} height={21} priority />
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 animate-fade-up stagger-4">
             <Link href="/login" className="text-text-muted hover:text-text text-sm transition-colors duration-150 px-3 py-1.5">
               Sign in
             </Link>
@@ -95,26 +95,26 @@ export default function LandingPage() {
         <div className="max-w-6xl mx-auto">
           <div className="max-w-3xl">
             {/* Badge */}
-            <div className="inline-flex items-center gap-2 bg-accent-faint border border-accent/20 rounded-full px-3 py-1 mb-8">
+            <div className="inline-flex items-center gap-2 bg-accent-faint border border-accent/20 rounded-full px-3 py-1 mb-8 animate-fade-up">
               <div className="w-1.5 h-1.5 rounded-full bg-accent" />
               <span className="text-accent text-xs font-medium">Google Forms, but actually good</span>
             </div>
 
             {/* Headline */}
-            <h1 className="font-syne text-5xl font-bold text-text leading-[1.1] mb-6 lg:text-6xl">
+            <h1 className="font-syne text-5xl font-bold text-text leading-[1.1] mb-6 lg:text-6xl animate-fade-up stagger-1">
               Forms that feel like
               <br />
               <span className="text-accent">a real product.</span>
             </h1>
 
             {/* Sub */}
-            <p className="text-text-muted text-xl mb-8 max-w-xl leading-relaxed">
+            <p className="text-text-muted text-xl mb-8 max-w-xl leading-relaxed animate-fade-up stagger-2">
               Build beautiful forms, protect quiz integrity with tab-switch detection,
               and see your responses in real analytics. Free.
             </p>
 
             {/* Feature pills */}
-            <div className="flex flex-wrap gap-2 mb-10">
+            <div className="flex flex-wrap gap-2 mb-10 animate-fade-up stagger-3">
               {['Anti-cheat quizzes', 'Response charts', 'Conditional logic', 'CSV / Excel / PDF export'].map(f => (
                 <span key={f} className="text-xs font-mono text-text-faint border border-border px-3 py-1 rounded-full">
                   {f}
@@ -227,7 +227,7 @@ export default function LandingPage() {
           />
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
             {FEATURES.map(({ icon, title, desc }) => (
-              <div key={title} className="bg-surface border border-border rounded-xl p-6 hover:border-accent/30 transition-colors duration-200 group">
+              <div key={title} className="bg-surface border border-border rounded-xl p-6 hover:border-accent/30 hover:-translate-y-0.5 hover:shadow-lg transition-[transform,border-color,box-shadow] duration-200 ease-out group">
                 <div className="w-10 h-10 rounded-lg bg-accent-faint border border-accent/20 flex items-center justify-center text-accent mb-4 group-hover:bg-accent group-hover:text-white transition-colors duration-200">
                   {icon}
                 </div>

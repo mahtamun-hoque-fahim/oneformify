@@ -53,6 +53,67 @@ body {
   }
 }
 
+
+/* ─── Motion easing tokens ─────────────────────────────────────── */
+:root {
+  --ease-out:    cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+  --ease-subtle: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ─── Keyframes ─────────────────────────────────────────────────── */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scale-in {
+  from { opacity: 0; transform: scale(0.95); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes stagger-fade-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── Utility animation classes ─────────────────────────────────── */
+.animate-fade-up {
+  animation: fade-up 0.25s var(--ease-out) both;
+}
+
+.animate-scale-in {
+  animation: scale-in 0.2s var(--ease-out) both;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.2s var(--ease-subtle) both;
+}
+
+/* Modal backdrop */
+.animate-backdrop-in {
+  animation: fade-in 0.18s var(--ease-subtle) both;
+}
+
+/* Stagger delays for lists */
+.stagger-1 { animation-delay: 0.04s; }
+.stagger-2 { animation-delay: 0.08s; }
+.stagger-3 { animation-delay: 0.12s; }
+.stagger-4 { animation-delay: 0.16s; }
+.stagger-5 { animation-delay: 0.20s; }
+
+/* ─── Input focus glow ──────────────────────────────────────────── */
+.input-glow:focus {
+  box-shadow: 0 0 0 3px rgb(109 40 217 / 0.15);
+  border-color: var(--color-accent);
+}
+
 /* cave-man placeholder skeleton shimmer */
 [data-image-slot] {
   position: relative;

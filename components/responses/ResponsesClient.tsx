@@ -128,7 +128,7 @@ export default function ResponsesClient({ formId, fields, responses, slug }: Pro
                       </div>
                       <div className="w-full bg-surface-elevated rounded-full h-1.5">
                         <div
-                          className="bg-accent h-1.5 rounded-full transition-all duration-300"
+                          className="bg-accent h-1.5 rounded-full transition-[width] duration-300 ease-out"
                           style={{ width: `${(count / max) * 100}%` }}
                         />
                       </div>

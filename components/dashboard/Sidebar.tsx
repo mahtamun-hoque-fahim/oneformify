@@ -88,7 +88,7 @@ export default function DashboardSidebar({ user }: Props) {
         </div>
         <button
           onClick={handleSignOut}
-          className="w-full text-left px-3 py-2 rounded-md text-sm text-text-muted hover:text-danger hover:bg-danger/10 transition-colors duration-150"
+          className="w-full text-left px-3 py-2 rounded-md text-sm text-text-muted hover:text-danger hover:bg-danger/10 active:scale-[0.98] transition-[background-color,color,transform] duration-100 ease-out"
         >
           Sign out
         </button>

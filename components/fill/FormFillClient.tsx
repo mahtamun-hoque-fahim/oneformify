@@ -178,7 +178,7 @@ export default function FormFillClient({ formId, slug, title, description, field
           <button
             onClick={() => submit()}
             disabled={submitting}
-            className="w-full bg-accent text-white py-3 rounded-md font-semibold text-sm hover:bg-accent-hover transition-colors duration-150 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full bg-accent text-white py-3 rounded-md font-semibold text-sm hover:bg-accent-hover transition-colors duration-150 active:scale-[0.97] active:scale-[0.97] active:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {submitting ? 'Submitting...' : 'Submit'}
           </button>
