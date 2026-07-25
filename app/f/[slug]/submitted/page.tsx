@@ -24,9 +24,13 @@ export default async function SubmittedPage({ params }: Props) {
     <main className="min-h-screen bg-bg flex items-center justify-center p-4">
       <div className="max-w-md w-full text-center">
         <div className="bg-surface border border-border rounded-xl p-10">
-          {/* Success icon */}
-          <div className="w-16 h-16 rounded-full bg-success/10 border border-success/20 flex items-center justify-center mx-auto mb-6">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-success">
+          {/* IMAGE-BRIEF: success-05 | 1:1 | small success illustration — abstract celebration mark or check in bg-surface-elevated circle, accent violet glow, minimal flat vector, no text, 120x120px target, sits above the thank you headline */}
+          <div
+            data-image-slot="success-05"
+            className="w-28 h-28 rounded-full border border-dashed border-white/10 bg-surface-elevated/60 mx-auto mb-6 flex items-center justify-center"
+          >
+            {/* Fallback until art is placed */}
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-success opacity-40">
               <path d="M20 6L9 17l-5-5" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </div>

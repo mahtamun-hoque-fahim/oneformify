@@ -140,7 +140,11 @@ export default function LandingPage() {
           </div>
 
           {/* Hero visual — form preview mock */}
-          {/* IMAGE-BRIEF: Full-bleed dark hero visual — asymmetric layout with a floating form preview card (dark surface, violet accent fields, progress bar) on the right side. Premium SaaS product screenshot feel. Ink & Signal palette. No photography. */}
+          {/* IMAGE-BRIEF: hero-01 | 16:9 | product screenshot or 3D render — dark bg-surface panel, a filled Formify form at 3/4 angle, violet accent field highlights, progress bar visible, soft top-left light, no baked-in text */}
+          <div
+            data-image-slot="hero-01"
+            className="aspect-video w-full rounded-2xl border border-dashed border-white/10 bg-surface/40"
+          />
           <div className="mt-16 relative">
             {/* Mock form preview */}
             <div className="bg-surface border border-border rounded-2xl p-6 max-w-2xl ml-auto shadow-lg">
@@ -211,6 +215,11 @@ export default function LandingPage() {
               Everything Google Forms should have built in.
             </h2>
           </div>
+          {/* IMAGE-BRIEF: feat-02 | 3:1 | single wide illustration strip — 3 side-by-side scenes in bg-surface-elevated panels: (1) drag-drop builder canvas with dot grid, (2) form fill page with progress bar, (3) response chart with violet bars. Flat vector style, accent color only, no gradients */}
+          <div
+            data-image-slot="feat-02"
+            className="w-full h-48 rounded-xl border border-dashed border-white/10 bg-surface/40 mb-10"
+          />
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
             {FEATURES.map(({ icon, title, desc }) => (
               <div key={title} className="bg-surface border border-border rounded-xl p-6 hover:border-accent/30 transition-colors duration-200 group">
@@ -250,8 +259,12 @@ export default function LandingPage() {
 
       {/* Bottom CTA */}
       <section className="py-24 px-6 border-t border-border">
-        <div className="max-w-2xl mx-auto text-center">
-          {/* IMAGE-BRIEF: Centered CTA section background — subtle dark radial burst or geometric grid pattern in Ink & Signal palette. Violet glow centered behind the headline. Abstract, not photographic. */}
+        <div className="max-w-2xl mx-auto text-center relative">
+          {/* IMAGE-BRIEF: cta-03 | 16:9 | full-bleed background texture for CTA section — dark bg canvas with subtle dot-grid or crosshatch pattern, single radial violet accent/20 glow centered, no figures or UI elements, purely atmospheric */}
+          <div
+            data-image-slot="cta-03"
+            className="absolute inset-0 rounded-xl border border-dashed border-white/10 bg-surface/20 -z-10"
+          />
           <Image src="/icon.svg" alt="" width={48} height={48} className="mx-auto mb-6 opacity-80" />
           <h2 className="font-syne text-4xl font-bold text-text mb-4">
             Start building today.
