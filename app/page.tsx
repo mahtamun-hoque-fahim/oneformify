@@ -1,6 +1,17 @@
 import Link from 'next/link'
 import Image from 'next/image'
 
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Formify — The Google Forms Alternative That Looks Good',
+  description:
+    'Build beautiful dark-mode forms, protect quizzes with tab-switch detection, and see real response analytics. Free. No credit card.',
+  alternates: {
+    canonical: '/',
+  },
+}
+
 const FEATURES = [
   {
     icon: (
@@ -69,6 +80,43 @@ const FIELD_TYPES = ['Short text', 'Multiple choice', 'Rating', 'Date', 'File up
 export default function LandingPage() {
   return (
     <div className="min-h-screen bg-bg text-text">
+      {/* JSON-LD structured data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@graph": [
+              {
+                "@type": "Organization",
+                "@id": `${process.env.NEXT_PUBLIC_APP_URL ?? 'https://oneformify.vercel.app'}/#organization`,
+                "name": "Formify",
+                "url": process.env.NEXT_PUBLIC_APP_URL ?? 'https://oneformify.vercel.app',
+                "logo": {
+                  "@type": "ImageObject",
+                  "url": `${process.env.NEXT_PUBLIC_APP_URL ?? 'https://oneformify.vercel.app'}/logo.svg`
+                }
+              },
+              {
+                "@type": "WebSite",
+                "@id": `${process.env.NEXT_PUBLIC_APP_URL ?? 'https://oneformify.vercel.app'}/#website`,
+                "url": process.env.NEXT_PUBLIC_APP_URL ?? 'https://oneformify.vercel.app',
+                "name": "Formify",
+                "publisher": { "@id": `${process.env.NEXT_PUBLIC_APP_URL ?? 'https://oneformify.vercel.app'}/#organization` }
+              },
+              {
+                "@type": "SoftwareApplication",
+                "name": "Formify",
+                "applicationCategory": "BusinessApplication",
+                "operatingSystem": "Web",
+                "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+                "description": "Premium dark-UI form builder with anti-cheat quiz protection, conditional logic, and real response analytics.",
+                "url": process.env.NEXT_PUBLIC_APP_URL ?? 'https://oneformify.vercel.app'
+              }
+            ]
+          })
+        }}
+      />
 
       {/* Nav */}
       <nav className="fixed top-0 inset-x-0 z-40 border-b border-border bg-bg/80 backdrop-blur-md">

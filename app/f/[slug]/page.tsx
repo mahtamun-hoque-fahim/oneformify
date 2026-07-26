@@ -17,9 +17,21 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const [form] = await db.select({ title: forms.title, description: forms.description })
     .from(forms)
     .where(and(eq(forms.slug, slug), eq(forms.isPublished, true), isNull(forms.deletedAt)))
+
+  const title = form?.title ?? 'Form'
+  const description = form?.description ?? `Fill in the ${title} form, powered by Formify.`
+  const BASE_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://oneformify.vercel.app'
+
   return {
-    title: form?.title ?? 'Form',
-    description: form?.description ?? undefined,
+    title,
+    description,
+    alternates: { canonical: `/f/${slug}` },
+    openGraph: {
+      title,
+      description,
+      url: `${BASE_URL}/f/${slug}`,
+      type: 'website',
+    },
   }
 }
 
@@ -48,8 +60,24 @@ export default async function FormFillPage({ params }: Props) {
     }
   }
 
+  const BASE_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://oneformify.vercel.app'
+
   return (
-    <FormFillClient
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            "name": form.title,
+            "description": form.description ?? `Fill in the ${form.title} form, powered by Formify.`,
+            "url": `${BASE_URL}/f/${form.slug}`,
+            "isPartOf": { "@id": `${BASE_URL}/#website` }
+          })
+        }}
+      />
+      <FormFillClient
       formId={form.id}
       slug={form.slug}
       title={form.title}
@@ -57,5 +85,6 @@ export default async function FormFillPage({ params }: Props) {
       fields={form.fields as FormField[]}
       settings={settings}
     />
+    </>
   )
 }

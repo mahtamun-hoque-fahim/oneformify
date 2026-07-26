@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
 import { redirect } from 'next/navigation'
@@ -6,6 +7,10 @@ import { forms } from '@/lib/db/schema'
 import { eq, isNull, and } from 'drizzle-orm'
 import type { FormSettings } from '@/lib/types/form'
 import { DEFAULT_SETTINGS } from '@/lib/types/form'
+
+export const metadata: Metadata = {
+  robots: { index: false, follow: false },
+}
 
 interface Props {
   params: Promise<{ slug: string }>
