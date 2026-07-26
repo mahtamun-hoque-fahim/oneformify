@@ -60,12 +60,19 @@ export async function GET(
   }
 
   if (format === 'xlsx') {
-    const XLSX = await import('xlsx')
-    const wb = XLSX.utils.book_new()
-    const ws = XLSX.utils.aoa_to_sheet([headers_row, ...rows])
-    XLSX.utils.book_append_sheet(wb, ws, 'Responses')
-    const buf = XLSX.write(wb, { type: 'buffer', bookType: 'xlsx' })
-    return new NextResponse(buf, {
+    const ExcelJS = await import('exceljs')
+    const wb = new ExcelJS.default.Workbook()
+    const ws = wb.addWorksheet('Responses')
+    ws.addRow(headers_row)
+    for (const row of rows) ws.addRow(row)
+    // Style header row
+    ws.getRow(1).font = { bold: true }
+    ws.getRow(1).fill = {
+      type: 'pattern', pattern: 'solid',
+      fgColor: { argb: 'FF1A1A28' },
+    }
+    const buf = await wb.xlsx.writeBuffer()
+    return new NextResponse(new Uint8Array(buf as ArrayBuffer), {
       headers: {
         'Content-Type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
         'Content-Disposition': `attachment; filename="${form.slug}-responses.xlsx"`,

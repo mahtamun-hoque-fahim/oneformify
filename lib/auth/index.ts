@@ -33,6 +33,12 @@ function createAuth() {
         plan: { type: 'string', defaultValue: 'free', input: false },
       },
     },
+    // Fix B5/G2: rate limiting on sign-in and password reset endpoints
+    rateLimit: {
+      enabled: true,
+      window: 60,         // 60 second window
+      max: 10,            // 10 attempts per window per IP
+    },
     // Bug fix B5: seed admin role from ADMIN_EMAILS env var on user creation
     databaseHooks: {
       user: {

@@ -116,26 +116,14 @@ export default function FormFieldRenderer({ field, value, onChange, error }: Pro
       )}
 
       {field.type === 'file_upload' && (
-        <div className={`border-2 border-dashed rounded-md p-6 text-center transition-colors duration-150 ${
-          error ? 'border-danger' : 'border-border hover:border-accent/60'
-        }`}>
-          <input type="file" accept={field.acceptedFileTypes}
-            onChange={e => { const f = e.target.files?.[0]; if (f) onChange(f.name) }}
-            className="hidden" id={`file-${field.id}`} />
-          <label htmlFor={`file-${field.id}`} className="cursor-pointer">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-text-muted mx-auto mb-2">
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" strokeLinecap="round" strokeLinejoin="round"/>
-              <polyline points="17 8 12 3 7 8" strokeLinecap="round" strokeLinejoin="round"/>
-              <line x1="12" y1="3" x2="12" y2="15" strokeLinecap="round"/>
-            </svg>
-            {value ? (
-              <p className="text-sm text-accent">{value as string}</p>
-            ) : (
-              <p className="text-sm text-text-muted">Click to upload
-                {field.acceptedFileTypes && <span className="text-text-faint text-xs block mt-0.5">{field.acceptedFileTypes}</span>}
-              </p>
-            )}
-          </label>
+        <div className="border-2 border-dashed border-border/50 rounded-md p-6 text-center bg-surface-elevated/30">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-text-faint mx-auto mb-2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" strokeLinecap="round" strokeLinejoin="round"/>
+            <polyline points="17 8 12 3 7 8" strokeLinecap="round" strokeLinejoin="round"/>
+            <line x1="12" y1="3" x2="12" y2="15" strokeLinecap="round"/>
+          </svg>
+          <p className="text-sm text-text-faint">File upload coming soon</p>
+          <p className="text-xs text-text-faint mt-1 opacity-60">This field type is not yet active</p>
         </div>
       )}
 

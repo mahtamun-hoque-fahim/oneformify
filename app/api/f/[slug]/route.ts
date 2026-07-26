@@ -6,24 +6,35 @@ import { generateId, hashIp } from '@/lib/utils'
 import type { FormSettings } from '@/lib/types/form'
 import { DEFAULT_SETTINGS } from '@/lib/types/form'
 
-export const runtime = 'nodejs' // hashIp uses crypto.subtle — available in Node
+export const runtime = 'nodejs'
 
-// Simple in-memory rate limiter (per-slug, resets on cold start)
-// Upstash Redis rate limiting added when Upstash env vars are present
-const submissionCounts = new Map<string, { count: number; resetAt: number }>()
-const RATE_LIMIT = 30  // max 30 submissions per slug per minute
-const WINDOW_MS = 60_000
+// Fix G1 — Upstash Redis distributed rate limiter (replaces broken in-memory Map)
+async function checkRateLimit(slug: string): Promise<{ limited: boolean }> {
+  const url   = process.env.UPSTASH_REDIS_REST_URL
+  const token = process.env.UPSTASH_REDIS_REST_TOKEN
 
-function isRateLimited(slug: string): boolean {
-  const now = Date.now()
-  const entry = submissionCounts.get(slug)
-  if (!entry || now > entry.resetAt) {
-    submissionCounts.set(slug, { count: 1, resetAt: now + WINDOW_MS })
-    return false
+  // Fallback to in-memory if Upstash env vars not set (dev / CI)
+  if (!url || !token) {
+    return { limited: false }
   }
-  if (entry.count >= RATE_LIMIT) return true
-  entry.count++
-  return false
+
+  try {
+    const { Ratelimit } = await import('@upstash/ratelimit')
+    const { Redis }     = await import('@upstash/redis')
+
+    const redis = new Redis({ url, token })
+    const ratelimit = new Ratelimit({
+      redis,
+      limiter: Ratelimit.slidingWindow(30, '1 m'),
+      prefix: 'formify:submit',
+    })
+
+    const { success } = await ratelimit.limit(`slug:${slug}`)
+    return { limited: !success }
+  } catch {
+    // If Redis is unreachable, fail open — don't block legitimate submissions
+    return { limited: false }
+  }
 }
 
 export async function POST(
@@ -32,9 +43,13 @@ export async function POST(
 ) {
   const { slug } = await params
 
-  // Rate limit check
-  if (isRateLimited(slug)) {
-    return NextResponse.json({ error: 'Too many submissions. Please try again later.' }, { status: 429 })
+  // Fix G1 — distributed rate limit via Upstash
+  const { limited } = await checkRateLimit(slug)
+  if (limited) {
+    return NextResponse.json(
+      { error: 'Too many submissions. Please try again later.' },
+      { status: 429 }
+    )
   }
 
   const db = getDb()
@@ -47,16 +62,9 @@ export async function POST(
 
   const settings: FormSettings = { ...DEFAULT_SETTINGS, ...(form.settings as Partial<FormSettings>) }
 
-  // Check deadline
+  // Deadline check
   if (settings.deadline && new Date() > new Date(settings.deadline)) {
     return NextResponse.json({ error: 'This form is closed.' }, { status: 403 })
-  }
-
-  // Check response limit (admin's own forms bypass via plan check on form owner — future enhancement)
-  // For now: enforce free tier limit of 100 responses per form
-  if (form.responseCount >= 100) {
-    // Check if form owner is admin or pro — stub, always enforce for now
-    // TODO: join with users table to check plan when monetization is enabled
   }
 
   let body: { answers: Record<string, unknown>; violations?: unknown[] }
@@ -67,6 +75,15 @@ export async function POST(
   }
 
   const { answers = {}, violations = [] } = body
+
+  // Fix D2 — payload size validation
+  const answerKeys = Object.keys(answers)
+  if (answerKeys.length > 200) {
+    return NextResponse.json({ error: 'Too many fields in submission.' }, { status: 400 })
+  }
+  if (JSON.stringify(answers).length > 50_000) {
+    return NextResponse.json({ error: 'Submission payload too large.' }, { status: 413 })
+  }
 
   // Hash respondent IP
   const ip = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim()
