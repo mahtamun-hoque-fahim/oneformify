@@ -20,7 +20,7 @@ const FEATURES = [
       </svg>
     ),
     title: 'Anti-cheat quiz protection',
-    desc: 'Focus monitoring detects tab switches and window blur in real time. Three-strike model — warn, flag, auto-submit. No browser extensions needed.',
+    desc: 'When a quiz taker switches tabs, Formify knows. Three strikes: first gets a warning overlay, second gets flagged, third auto-submits the quiz. No extensions, no software.',
   },
   {
     icon: (
@@ -29,7 +29,7 @@ const FEATURES = [
       </svg>
     ),
     title: 'Real response analytics',
-    desc: 'Distribution charts per field. Violation logs. Export to CSV, Excel, or PDF. Everything you actually need, nothing you don\'t.',
+    desc: 'Response table, per-field bar charts, violation logs. Export to CSV, Excel, or PDF. No buried settings, no analytics you have to pay to unlock.',
   },
   {
     icon: (
@@ -37,8 +37,8 @@ const FEATURES = [
         <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/>
       </svg>
     ),
-    title: 'Landing-page quality forms',
-    desc: 'Conditional logic, progress bars, custom thank-you pages. Forms that look like a product, not a school assignment.',
+    title: 'Forms that look like a product',
+    desc: 'Progress bar, conditional field logic, custom thank-you pages. Your form should feel like a product. Most people stopping halfway through is a design problem.',
   },
   {
     icon: (
@@ -50,8 +50,8 @@ const FEATURES = [
         <polyline points="10 9 9 9 8 9"/>
       </svg>
     ),
-    title: '9 field types, drag to build',
-    desc: 'Short text, long text, multiple choice, checkboxes, dropdown, date, file upload, rating, section breaks. Built in minutes.',
+    title: '9 field types',
+    desc: 'Short text, long text, multiple choice, checkboxes, dropdown, date, rating, section breaks. Drag one in, done.',
   },
   {
     icon: (
@@ -59,8 +59,8 @@ const FEATURES = [
         <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
       </svg>
     ),
-    title: 'Live progress bar',
-    desc: 'Respondents see how far they\'ve come. Reduces drop-offs on longer forms. Toggleable per form.',
+    title: 'Progress bar',
+    desc: 'People abandon forms when they cannot tell how long they have left. The progress bar fixes that. You can turn it off per form if you want.',
   },
   {
     icon: (
@@ -71,7 +71,7 @@ const FEATURES = [
       </svg>
     ),
     title: 'Conditional logic',
-    desc: 'If Q3 equals X, skip to Q7. Show or hide fields based on previous answers. Built into every form, not a premium add-on.',
+    desc: 'If someone says they prefer email, skip the phone number field. Built in. Not a paid tier.',
   },
 ]
 
@@ -145,7 +145,7 @@ export default function LandingPage() {
             {/* Badge */}
             <div className="inline-flex items-center gap-2 bg-accent-faint border border-accent/20 rounded-full px-3 py-1 mb-8 animate-fade-up">
               <div className="w-1.5 h-1.5 rounded-full bg-accent" />
-              <span className="text-accent text-xs font-medium">Google Forms, but actually good</span>
+              <span className="text-accent text-xs font-medium">What Google Forms should have been</span>
             </div>
 
             {/* Headline */}
@@ -157,8 +157,7 @@ export default function LandingPage() {
 
             {/* Sub */}
             <p className="text-text-muted text-xl mb-8 max-w-xl leading-relaxed animate-fade-up stagger-2">
-              Build beautiful forms, protect quiz integrity with tab-switch detection,
-              and see your responses in real analytics. Free.
+              Google Forms works. It just looks like 2013, and it has no idea your students have ChatGPT open in another tab. Formify is the version that fixes both of those things. Free.
             </p>
 
             {/* Feature pills */}
@@ -176,7 +175,7 @@ export default function LandingPage() {
                 href="/signup"
                 className="bg-accent hover:bg-accent-hover text-white font-semibold px-6 py-3 rounded-md text-sm transition-colors duration-150"
               >
-                Start building for free
+                Create your first form
               </Link>
               <Link
                 href="/login"
@@ -261,9 +260,9 @@ export default function LandingPage() {
       <section className="py-24 px-6">
         <div className="max-w-6xl mx-auto">
           <div className="mb-14">
-            <p className="text-xs font-mono text-accent mb-3 uppercase tracking-widest">What you get</p>
+            <p className="text-xs font-mono text-accent mb-3 uppercase tracking-widest">Why people switch</p>
             <h2 className="font-syne text-3xl font-bold text-text max-w-lg">
-              Everything Google Forms should have built in.
+              What you are actually missing when you use Google Forms.
             </h2>
           </div>
           <Image
@@ -292,13 +291,13 @@ export default function LandingPage() {
         <div className="max-w-6xl mx-auto">
           <div className="mb-14">
             <p className="text-xs font-mono text-accent mb-3 uppercase tracking-widest">How it works</p>
-            <h2 className="font-syne text-3xl font-bold text-text">Build. Share. Analyse.</h2>
+            <h2 className="font-syne text-3xl font-bold text-text">Three steps and you are collecting responses.</h2>
           </div>
           <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
             {[
-              { step: '01', title: 'Build your form', desc: 'Drag fields onto the canvas, set conditional logic, configure quiz mode and anti-cheat settings.' },
-              { step: '02', title: 'Share a link', desc: 'Publish your form and share the /f/your-slug link. Respondents get a premium fill experience on any device.' },
-              { step: '03', title: 'See your data', desc: 'View response tables, field-level charts, and violation logs. Export in one click.' },
+              { step: '01', title: 'Build your form', desc: 'Drag fields onto the canvas. Add conditional logic, set a quiz mode, configure focus monitoring. Takes a few minutes.' },
+              { step: '02', title: 'Share a link', desc: 'Publish it, copy the /f/your-slug link, send it. The fill page runs in any browser and looks nothing like Google Forms.' },
+              { step: '03', title: 'See your data', desc: 'Responses land in a table. Charts show up automatically for choice fields. Export to CSV, Excel, or PDF whenever you need it.' },
             ].map(({ step, title, desc }) => (
               <div key={step} className="relative pl-6 border-l border-border">
                 <p className="font-mono text-xs text-accent mb-3">{step}</p>
@@ -321,16 +320,16 @@ export default function LandingPage() {
           />
           <Image src="/icon.svg" alt="" width={48} height={48} className="mx-auto mb-6 opacity-80" />
           <h2 className="font-syne text-4xl font-bold text-text mb-4">
-            Start building today.
+            It is free. Make a form.
           </h2>
           <p className="text-text-muted text-lg mb-8">
-            Free. No credit card. No expiry. Upgrade when we launch publicly.
+            No credit card. No expiry. When we go public you will get to choose a plan, but that is not today.
           </p>
           <Link
             href="/signup"
             className="inline-block bg-accent hover:bg-accent-hover text-white font-semibold px-8 py-3.5 rounded-md text-sm transition-colors duration-150"
           >
-            Create your first form →
+            Get started — it is free
           </Link>
         </div>
       </section>
@@ -339,7 +338,7 @@ export default function LandingPage() {
       <footer className="border-t border-border py-8 px-6">
         <div className="max-w-6xl mx-auto flex items-center justify-between">
           <Image src="/logo.svg" alt="Formify" width={80} height={17} />
-          <p className="text-text-faint text-xs">Built by Mahtamun</p>
+          <p className="text-text-faint text-xs">Made by Mahtamun</p>
         </div>
       </footer>
     </div>
