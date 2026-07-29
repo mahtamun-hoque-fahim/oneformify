@@ -1,5 +1,9 @@
 # Formify
 
+![Version](https://img.shields.io/github/v/release/mahtamun-hoque-fahim/oneformify?style=flat-square&color=6d28d9)
+![License](https://img.shields.io/github/license/mahtamun-hoque-fahim/oneformify?style=flat-square)
+![Stars](https://img.shields.io/github/stars/mahtamun-hoque-fahim/oneformify?style=flat-square)
+
 Premium dark-UI form builder with anti-cheat quiz protection, real-time form fill experience, and response analytics.
 
 ## Stack
