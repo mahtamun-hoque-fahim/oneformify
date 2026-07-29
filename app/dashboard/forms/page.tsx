@@ -6,6 +6,7 @@ import { getDb } from '@/lib/db'
 import { forms } from '@/lib/db/schema'
 import { eq, isNull, desc } from 'drizzle-orm'
 import CreateFormButton from '@/components/dashboard/CreateFormButton'
+import DuplicateFormButton from '@/components/dashboard/DuplicateFormButton'
 
 export default async function FormsPage() {
   const session = await getAuth().api.getSession({ headers: await headers() })
@@ -70,6 +71,7 @@ export default async function FormsPage() {
                     className="text-text-muted hover:text-text px-2 py-1 rounded text-xs transition-colors">
                     Responses
                   </Link>
+                  <DuplicateFormButton formId={form.id} />
                   <a href={`/f/${form.slug}`} target="_blank" rel="noopener noreferrer"
                     className="text-text-muted hover:text-accent px-2 py-1 rounded text-xs transition-colors">
                     Preview

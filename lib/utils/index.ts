@@ -35,7 +35,7 @@ export function isOverLimit(
   if (role === 'admin') return { overResponseLimit: false, overFormLimit: false }
 
   const limits = {
-    free:  { responses: 100, forms: 3 },
+    free:  { responses: 500, forms: 10 },
     pro:   { responses: Infinity, forms: Infinity },
     team:  { responses: Infinity, forms: Infinity },
   }

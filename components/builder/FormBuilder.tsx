@@ -2,6 +2,7 @@
 import { useState, useCallback, useTransition, useEffect } from 'react'
 import { Eye, EyeOff, Save, Share2, Settings } from 'lucide-react'
 import type { FormField, FormSettings, FieldType } from '@/lib/types/form'
+import { Shield } from 'lucide-react'
 import { generateId } from '@/lib/utils'
 import { updateFormFields, updateFormSettings } from '@/lib/actions/forms'
 import FieldPalette from './FieldPalette'
@@ -21,6 +22,7 @@ export default function FormBuilder({ form }: Props) {
   const [selectedId, setSelectedId] = useState<string | null>(null)
   const [title, setTitle] = useState(form.title)
   const [isPublished, setIsPublished] = useState(form.isPublished)
+  const [quizMode, setQuizMode] = useState((form.settings as FormSettings).focusMonitoringEnabled ?? false)
   const [saved, setSaved] = useState(true)
   const [isPending, startTransition] = useTransition()
   const [copyMsg, setCopyMsg] = useState('')
@@ -100,6 +102,19 @@ export default function FormBuilder({ form }: Props) {
     await updateFormSettings(form.id, { isPublished: next })
   }
 
+  async function toggleQuizMode() {
+    const next = !quizMode
+    setQuizMode(next)
+    const currentSettings = form.settings as FormSettings
+    await updateFormSettings(form.id, {
+      settings: {
+        ...currentSettings,
+        quizMode: next,
+        focusMonitoringEnabled: next,
+      },
+    })
+  }
+
   function copyLink() {
     const url = `${window.location.origin}/f/${form.slug}`
     navigator.clipboard.writeText(url)
@@ -148,6 +163,18 @@ export default function FormBuilder({ form }: Props) {
             <Settings className="w-3.5 h-3.5" />
             Settings
           </a>
+          <button
+            onClick={toggleQuizMode}
+            title={quizMode ? 'Quiz mode on — click to disable focus monitoring' : 'Enable quiz mode with focus monitoring'}
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-sm transition-colors duration-150 ${
+              quizMode
+                ? 'bg-warning/10 border border-warning/30 text-warning'
+                : 'bg-surface-elevated border border-border text-text-muted hover:text-text'
+            }`}
+          >
+            <Shield className="w-3.5 h-3.5" />
+            {quizMode ? 'Quiz mode on' : 'Quiz mode'}
+          </button>
           <button
             onClick={togglePublish}
             className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-sm font-medium transition-colors duration-150 ${

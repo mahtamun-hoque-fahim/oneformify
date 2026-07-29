@@ -68,8 +68,8 @@ export default function AccountSettingsClient({ name, email, plan, role }: Props
         </div>
         {plan === 'free' && role !== 'admin' && (
           <div className="bg-accent-faint border border-accent/20 rounded-lg px-4 py-3">
-            <p className="text-accent text-sm font-medium mb-0.5">Free plan limits</p>
-            <p className="text-text-muted text-xs">3 forms · 100 responses per form. Upgrade when we launch publicly.</p>
+            <p className="text-accent text-sm font-medium mb-0.5">Free plan</p>
+            <p className="text-text-muted text-xs">10 forms · 500 responses per form. Upgrade options coming at public launch.</p>
           </div>
         )}
       </div>

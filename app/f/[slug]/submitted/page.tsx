@@ -49,8 +49,19 @@ export default async function SubmittedPage({ params }: Props) {
           <h1 className="font-syne text-2xl font-bold text-text mb-3">{message}</h1>
           <p className="text-text-muted text-sm">Your response has been recorded.</p>
         </div>
-        <p className="text-text-faint text-xs mt-6">
-          Built with{' '}
+        {/* Conversion CTA — every submitted page is a signup opportunity */}
+        <div className="mt-6 bg-surface border border-border rounded-xl px-5 py-4 text-center">
+          <p className="text-text text-sm font-medium mb-1">Want to build a form like this?</p>
+          <p className="text-text-muted text-xs mb-3">Free. No credit card. Takes 2 minutes.</p>
+          <Link
+            href="/signup"
+            className="inline-block bg-accent hover:bg-accent-hover text-white text-xs font-semibold px-4 py-2 rounded-md transition-colors duration-150 active:scale-[0.97]"
+          >
+            Create your form free
+          </Link>
+        </div>
+        <p className="text-text-faint text-xs mt-4">
+          Made with{' '}
           <Link href="/" className="text-accent hover:text-accent-hover transition-colors">
             Formify
           </Link>

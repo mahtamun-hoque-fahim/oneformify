@@ -131,3 +131,45 @@ export async function getFormById(formId: string) {
 
   return form ?? null
 }
+
+// -- Duplicate form ----------------------------------------------------------
+export async function duplicateForm(formId: string) {
+  const session = await getSession()
+  const db = getDb()
+
+  // Fetch the source form
+  const [source] = await db.select().from(forms)
+    .where(and(eq(forms.id, formId), eq(forms.userId, session.user.id), isNull(forms.deletedAt)))
+  if (!source) return { error: 'Form not found' }
+
+  // Plan limit check on destination user
+  const [{ value: activeForms }] = await db
+    .select({ value: count() })
+    .from(forms)
+    .where(and(eq(forms.userId, session.user.id), isNull(forms.deletedAt)))
+
+  const { overFormLimit } = isOverLimit(
+    session.user.role ?? 'user',
+    (session.user as { plan?: string }).plan ?? 'free',
+    0,
+    Number(activeForms)
+  )
+  if (overFormLimit) return { error: 'You have reached the form limit for your plan.' }
+
+  const newId   = generateId()
+  const newSlug = `${source.slug}-copy-${newId.slice(0, 5)}`
+
+  await db.insert(forms).values({
+    id:            newId,
+    userId:        session.user.id,
+    title:         `${source.title} (copy)`,
+    slug:          newSlug,
+    description:   source.description,
+    fields:        source.fields,
+    settings:      source.settings,
+    isPublished:   false,         // copies start as draft
+    responseCount: 0,
+  })
+
+  redirect(`/dashboard/forms/${newId}`)
+}
