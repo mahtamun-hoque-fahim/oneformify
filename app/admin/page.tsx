@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic'
+
 import { headers } from 'next/headers'
 import { getAuth } from '@/lib/auth'
 import { getDb } from '@/lib/db'

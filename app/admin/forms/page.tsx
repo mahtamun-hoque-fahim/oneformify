@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic'
+
 import { getDb } from '@/lib/db'
 import { forms, users } from '@/lib/db/schema'
 import { isNull, desc, eq } from 'drizzle-orm'
